@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd 
+	http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- 事务切点 -->
+	<aop:config>
+		<aop:advisor id="managerTx" advice-ref="api_advice" pointcut="execution(* com.whatbi.zq.bo.impl.*.*Impl.*(..))"/>
+	</aop:config>
+	<!-- AOP通知 -->
+	<tx:advice id="api_advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			
+			<tx:method name="*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			
+			<tx:method name="get*" read-only="true"/>
+			<!-- create代表的是新建*** -->
+			<tx:method name="create*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- insert代表插入*** -->
+			<tx:method name="insert*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- update代表的是修改(更新)*** -->
+			<tx:method name="update*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- edit代表的是修改(更新)*** -->
+			<tx:method name="edit*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- delete*代表的是删除*** -->
+			<tx:method name="delete*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- pay代表的是支付*** -->
+			<tx:method name="pay*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+			<!-- 注册*** -->
+			<tx:method name="register*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="com.whatbi.zq.dto.exception.AppExcpetion" />
+		</tx:attributes>
+	</tx:advice>
+
+
+</beans>
