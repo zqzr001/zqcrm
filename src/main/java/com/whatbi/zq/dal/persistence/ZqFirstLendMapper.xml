@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whatbi.zq.dal.persistence.ZqFirstLendMapperExt" >
+  <resultMap id="BaseResultMap" type="com.whatbi.zq.dal.domain.ZqFirstLend" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+    <result column="c_id" property="cId" jdbcType="BIGINT" />
+    <result column="l_money" property="lMoney" jdbcType="DOUBLE" />
+    <result column="l_startdate" property="lStartdate" jdbcType="BIGINT" />
+    <result column="l_enddate" property="lEnddate" jdbcType="BIGINT" />
+    <result column="l_rate" property="lRate" jdbcType="DOUBLE" />
+    <result column="l_type" property="lType" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, is_deleted, creator, gmt_create, modifier, gmt_modified, c_id, l_money, l_startdate, 
+    l_enddate, l_rate, l_type, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.whatbi.zq.dal.domain.ZqFirstLendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zq_first_lend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="oredCriteria.size != 0" />
+    <if test="oredCriteria.size == 0" />
+    <include refid="fullOrgPath" />
+    <include refid="owner" />
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zq_first_lend
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zq_first_lend
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.whatbi.zq.dal.domain.ZqFirstLendExample" >
+    delete from zq_first_lend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="com.whatbi.zq.dal.domain.ZqFirstLend" >
+    insert into zq_first_lend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="lMoney != null" >
+        l_money,
+      </if>
+      <if test="lStartdate != null" >
+        l_startdate,
+      </if>
+      <if test="lEnddate != null" >
+        l_enddate,
+      </if>
+      <if test="lRate != null" >
+        l_rate,
+      </if>
+      <if test="lType != null" >
+        l_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="lMoney != null" >
+        #{lMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="lStartdate != null" >
+        #{lStartdate,jdbcType=BIGINT},
+      </if>
+      <if test="lEnddate != null" >
+        #{lEnddate,jdbcType=BIGINT},
+      </if>
+      <if test="lRate != null" >
+        #{lRate,jdbcType=DOUBLE},
+      </if>
+      <if test="lType != null" >
+        #{lType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.whatbi.zq.dal.domain.ZqFirstLendExample" resultType="java.lang.Integer" >
+    select count(*) from zq_first_lend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="oredCriteria.size != 0" />
+    <if test="oredCriteria.size == 0" />
+    <include refid="fullOrgPath" />
+    <include refid="owner" />
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zq_first_lend
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifier != null" >
+        modifier = #{record.modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lMoney != null" >
+        l_money = #{record.lMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lStartdate != null" >
+        l_startdate = #{record.lStartdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.lEnddate != null" >
+        l_enddate = #{record.lEnddate,jdbcType=BIGINT},
+      </if>
+      <if test="record.lRate != null" >
+        l_rate = #{record.lRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lType != null" >
+        l_type = #{record.lType,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zq_first_lend
+    set id = #{record.id,jdbcType=BIGINT},
+      is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      modifier = #{record.modifier,jdbcType=VARCHAR},
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      c_id = #{record.cId,jdbcType=BIGINT},
+      l_money = #{record.lMoney,jdbcType=DOUBLE},
+      l_startdate = #{record.lStartdate,jdbcType=BIGINT},
+      l_enddate = #{record.lEnddate,jdbcType=BIGINT},
+      l_rate = #{record.lRate,jdbcType=DOUBLE},
+      l_type = #{record.lType,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whatbi.zq.dal.domain.ZqFirstLend" >
+    update zq_first_lend
+    <set >
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier == null" >
+        MODIFIER = 'system',
+      </if>
+      <if test="gmtModified == null" >
+        GMT_MODIFIED = 0,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="lMoney != null" >
+        l_money = #{lMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="lStartdate != null" >
+        l_startdate = #{lStartdate,jdbcType=BIGINT},
+      </if>
+      <if test="lEnddate != null" >
+        l_enddate = #{lEnddate,jdbcType=BIGINT},
+      </if>
+      <if test="lRate != null" >
+        l_rate = #{lRate,jdbcType=DOUBLE},
+      </if>
+      <if test="lType != null" >
+        l_type = #{lType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="MysqlDialectSuffix" >
+    <if test="page != null" >
+      <![CDATA[ LIMIT #{page.begin},#{page.end} ]]>
+    </if>
+  </sql>
+  <sql id="fullOrgPath" >
+    <if test="fullOrgPath != null" />
+  </sql>
+  <sql id="owner" >
+    <if test="owner != null" />
+  </sql>
+</mapper>

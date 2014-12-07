@@ -14,7 +14,7 @@
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  
 	<!-- 自动扫描的包名, 因为在spring的配置文件已经配置过了, 此处暂时注释, 有错再放开 -->
-	<!-- <context:component-scan base-package="com.app,com.core,JUnit4" /> -->
+	<context:component-scan base-package="com.whatbi.zq" />
 
 	<!-- 默认的注解映射的支持 -->
 	<mvc:annotation-driven />
