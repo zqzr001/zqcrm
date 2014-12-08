@@ -41,7 +41,7 @@ import org.mybatis.generator.codegen.XmlConstants;
  */
 public class MysqlPaginationPlugin extends PluginAdapter {
 
-    private static String FULLY_QUALIFIED_PAGE = "com.tairan.app.common.page.Page";
+    private static String FULLY_QUALIFIED_PAGE = "com.common.mybatis.util.Page";
 
     private static String XMLFILE_POSTFIX      = "Ext";
 

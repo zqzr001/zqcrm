@@ -20,6 +20,7 @@
 	
 	<tx:annotation-driven />
 
-	<context:component-scan base-package="com.whatbi.zq.***" /> 
+	<!-- 自动扫描的包名, 因为在springmvc的配置文件已经配置过了, 此处暂时注释 -->
+	<!-- <context:component-scan base-package="com.whatbi.zq" /> -->
 	
 </beans>

@@ -18,8 +18,8 @@
 		<plugin type="com.heioo.wichat.common.mybatis.plugin.MysqlPaginationPlugin" />
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.2.66:3306/tairan_app?useUnicode=true&amp;characterEncoding=UTF-8"
-			userId="tr_app" password="tr_app" />
+			connectionURL="jdbc:mysql://127.0.0.1:3306/zqcrm?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="root" />
 
 
 		<javaTypeResolver>
@@ -27,24 +27,32 @@
 		</javaTypeResolver>
 
 
-		<javaModelGenerator targetPackage="com.tairan.app.dal.domain"
+		<javaModelGenerator targetPackage="com.whatbi.zq.dal.domain"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.tairan.app.dal.persistence"
-			targetProject="src/main/resources">
+		<sqlMapGenerator targetPackage="com.whatbi.zq.dal.persistence"
+			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.tairan.app.dal.persistence" targetProject="src/main/java">
+			targetPackage="com.whatbi.zq.dal.persistence" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
 
-		<table tableName="zm_chat_record_back" schema="tairan_app" /> 
+		<table tableName="zq_customer" schema="zqcrm" />
+		<table tableName="zq_debt_transfer" schema="zqcrm" />
+		<table tableName="zq_first_debt" schema="zqcrm" />
+		<table tableName="zq_first_lend" schema="zqcrm" />
+		<table tableName="zq_product" schema="zqcrm" />
+		<table tableName="zq_report_debt_list" schema="zqcrm" />
+		<table tableName="zq_report_debt_transfer" schema="zqcrm" />
+		<table tableName="zq_user" schema="zqcrm" />
+		
 		
 	</context>
 </generatorConfiguration>

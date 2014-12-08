@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whatbi.zq.dal.persistence.ZqCustomerMapperExt" >
+  <resultMap id="BaseResultMap" type="com.whatbi.zq.dal.domain.ZqCustomer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+    <result column="c_cardid" property="cCardid" jdbcType="VARCHAR" />
+    <result column="c_role" property="cRole" jdbcType="INTEGER" />
+    <result column="c_job" property="cJob" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, is_deleted, creator, gmt_create, modifier, gmt_modified, c_name, c_cardid, c_role, 
+    c_job, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.whatbi.zq.dal.domain.ZqCustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zq_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="oredCriteria.size != 0" />
+    <if test="oredCriteria.size == 0" />
+    <include refid="fullOrgPath" />
+    <include refid="owner" />
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zq_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zq_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.whatbi.zq.dal.domain.ZqCustomerExample" >
+    delete from zq_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="com.whatbi.zq.dal.domain.ZqCustomer" >
+    insert into zq_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+      <if test="cCardid != null" >
+        c_cardid,
+      </if>
+      <if test="cRole != null" >
+        c_role,
+      </if>
+      <if test="cJob != null" >
+        c_job,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cCardid != null" >
+        #{cCardid,jdbcType=VARCHAR},
+      </if>
+      <if test="cRole != null" >
+        #{cRole,jdbcType=INTEGER},
+      </if>
+      <if test="cJob != null" >
+        #{cJob,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.whatbi.zq.dal.domain.ZqCustomerExample" resultType="java.lang.Integer" >
+    select count(*) from zq_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="oredCriteria.size != 0" />
+    <if test="oredCriteria.size == 0" />
+    <include refid="fullOrgPath" />
+    <include refid="owner" />
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zq_customer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifier != null" >
+        modifier = #{record.modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="record.cName != null" >
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cCardid != null" >
+        c_cardid = #{record.cCardid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cRole != null" >
+        c_role = #{record.cRole,jdbcType=INTEGER},
+      </if>
+      <if test="record.cJob != null" >
+        c_job = #{record.cJob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zq_customer
+    set id = #{record.id,jdbcType=BIGINT},
+      is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      modifier = #{record.modifier,jdbcType=VARCHAR},
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      c_name = #{record.cName,jdbcType=VARCHAR},
+      c_cardid = #{record.cCardid,jdbcType=VARCHAR},
+      c_role = #{record.cRole,jdbcType=INTEGER},
+      c_job = #{record.cJob,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whatbi.zq.dal.domain.ZqCustomer" >
+    update zq_customer
+    <set >
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier == null" >
+        MODIFIER = 'system',
+      </if>
+      <if test="gmtModified == null" >
+        GMT_MODIFIED = 0,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cCardid != null" >
+        c_cardid = #{cCardid,jdbcType=VARCHAR},
+      </if>
+      <if test="cRole != null" >
+        c_role = #{cRole,jdbcType=INTEGER},
+      </if>
+      <if test="cJob != null" >
+        c_job = #{cJob,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="MysqlDialectSuffix" >
+    <if test="page != null" >
+      <![CDATA[ LIMIT #{page.begin},#{page.end} ]]>
+    </if>
+  </sql>
+  <sql id="fullOrgPath" >
+    <if test="fullOrgPath != null" />
+  </sql>
+  <sql id="owner" >
+    <if test="owner != null" />
+  </sql>
+</mapper>
