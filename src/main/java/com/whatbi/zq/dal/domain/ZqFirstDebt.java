@@ -24,6 +24,9 @@ public class ZqFirstDebt {
     // 贷款金额
     private Double dMoney;
 
+    // 可用金额
+    private Double dUseMoney;
+
     // 开始日期
     private Long dStartdate;
 
@@ -156,6 +159,14 @@ public class ZqFirstDebt {
      */
     public void setDMoney(Double dMoney) {
         this.dMoney = dMoney;
+    }
+
+    public Double getDUseMoney() {
+        return dUseMoney;
+    }
+
+    public void setDUseMoney(Double dUseMoney) {
+        this.dUseMoney = dUseMoney;
     }
 
     /**

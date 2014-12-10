@@ -19,10 +19,10 @@ public class ZqDebtTransfer {
     private Long gmtModified;
 
     // 出借客户标识
-    private Long proName;
+    private Long custLendId;
 
     // 贷款客户标识
-    private Long proMoney;
+    private Long custDebtId;
 
     // 转让开始日期
     private Long proStartdate;
@@ -32,6 +32,9 @@ public class ZqDebtTransfer {
 
     // 利率
     private String proRate;
+
+    // 转让金额
+    private Double proMoney;
 
     // 冗余, 标记
     private Integer remark;
@@ -123,30 +126,30 @@ public class ZqDebtTransfer {
      * 返回出借客户标识
      * @return 出借客户标识
      */
-    public Long getProName() {
-        return proName;
+    public Long getCustLendId() {
+        return custLendId;
     }
 
     /**
      * 设置出借客户标识
      */
-    public void setProName(Long proName) {
-        this.proName = proName;
+    public void setCustLendId(Long custLendId) {
+        this.custLendId = custLendId;
     }
 
     /**
      * 返回贷款客户标识
      * @return 贷款客户标识
      */
-    public Long getProMoney() {
-        return proMoney;
+    public Long getCustDebtId() {
+        return custDebtId;
     }
 
     /**
      * 设置贷款客户标识
      */
-    public void setProMoney(Long proMoney) {
-        this.proMoney = proMoney;
+    public void setCustDebtId(Long custDebtId) {
+        this.custDebtId = custDebtId;
     }
 
     /**
@@ -192,6 +195,21 @@ public class ZqDebtTransfer {
      */
     public void setProRate(String proRate) {
         this.proRate = proRate == null ? null : proRate.trim();
+    }
+
+    /**
+     * 返回转让金额
+     * @return 转让金额
+     */
+    public Double getProMoney() {
+        return proMoney;
+    }
+
+    /**
+     * 设置转让金额
+     */
+    public void setProMoney(Double proMoney) {
+        this.proMoney = proMoney;
     }
 
     /**

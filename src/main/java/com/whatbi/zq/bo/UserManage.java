@@ -40,7 +40,7 @@ public class UserManage
         return zqUserMapperExt.selectByPrimaryKey(Long.parseLong(userId));
     }
     
-    public List<ZqUser> getAllUser(String userId)
+    public List<ZqUser> getAllUser()
     {
         return zqUserMapperExt.selectByExample(new ZqUserExample());
     }
@@ -74,6 +74,6 @@ public class UserManage
     public boolean delUser(ZqUser zqUser)
     {
         zqUser.setIsDeleted("y");
-        return zqUserMapperExt.updateByPrimaryKeySelective(zqUser) > 0;
+        return editUser(zqUser);
     }
 }
