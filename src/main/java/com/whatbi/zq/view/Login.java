@@ -3,6 +3,7 @@ package com.whatbi.zq.view;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.whatbi.zq.bo.UserManage;
@@ -22,11 +23,12 @@ public class Login
     @RequestMapping("/login")
     public String login()
     {
+        System.out.println("lai guo le");
         return "login";
     }
     
     @RequestMapping("/doLogin")
-    public String doLogin(ZqUser user)
+    public String doLogin(ZqUser user, Model model)
     {
         if (userManage.userLogin(user))
         {
@@ -34,6 +36,7 @@ public class Login
         }
         else
         {
+            model.addAttribute("loginError", "login");
             return "login";
         }
     }
