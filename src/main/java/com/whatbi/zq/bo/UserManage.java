@@ -62,7 +62,7 @@ public class UserManage
     
     public ZqUser addUser(ZqUser zqUser)
     {
-        zqUser.setId((long) zqUserMapperExt.insertSelective(zqUser));
+        zqUser.setId((long)zqUserMapperExt.insertSelective(zqUser));
         return zqUser;
     }
     

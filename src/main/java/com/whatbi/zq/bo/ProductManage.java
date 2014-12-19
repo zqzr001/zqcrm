@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.whatbi.zq.dal.domain.ZqProduct;
 import com.whatbi.zq.dal.domain.ZqProductExample;
 import com.whatbi.zq.dal.persistence.ZqProductMapperExt;
@@ -13,6 +15,7 @@ import com.whatbi.zq.dal.persistence.ZqProductMapperExt;
  * @version 创建时间：2014年12月8日 下午11:18:37 
  * 类说明 : 贷款经纪人管理贷款客户订单
  */
+@Service
 public class ProductManage
 {
     @Resource
@@ -30,7 +33,7 @@ public class ProductManage
 
     public ZqProduct addProduct(ZqProduct zqFirstLend)
     {
-        zqFirstLend.setId((long) zqProductMapperExt.insertSelective(zqFirstLend));
+        zqFirstLend.setId(Long.parseLong(String.valueOf(zqProductMapperExt.insertSelective(zqFirstLend))));
         return zqFirstLend;
     }
 

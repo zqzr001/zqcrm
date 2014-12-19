@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.whatbi.zq.dal.domain.ZqFirstDebt;
 import com.whatbi.zq.dal.domain.ZqFirstDebtExample;
 import com.whatbi.zq.dal.persistence.ZqFirstDebtMapperExt;
@@ -13,6 +15,7 @@ import com.whatbi.zq.dal.persistence.ZqFirstDebtMapperExt;
  * @version 创建时间：2014年12月8日 下午11:18:37 
  * 类说明 : 贷款经纪人管理贷款客户订单
  */
+@Service
 public class DebtManage
 {
     @Resource
@@ -35,7 +38,7 @@ public class DebtManage
     
     public ZqFirstDebt addDebtOrder(ZqFirstDebt zqFirstDebt)
     {
-        zqFirstDebt.setId((long) zqFirstDebtMapperExt.insertSelective(zqFirstDebt));
+        zqFirstDebt.setId(Long.parseLong(String.valueOf(zqFirstDebtMapperExt.insertSelective(zqFirstDebt))));
         return zqFirstDebt;
     }
     

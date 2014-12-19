@@ -24,7 +24,14 @@ public class Login
     public String login()
     {
         System.out.println("lai guo le");
-        return "login";
+        return "sys/sysLogin";
+    }
+    
+    @RequestMapping("/logout")
+    public String logout()
+    {
+        System.out.println("do logout");
+        return "redirect:/login";
     }
     
     @RequestMapping("/doLogin")
@@ -32,12 +39,14 @@ public class Login
     {
         if (userManage.userLogin(user))
         {
-            return "main";
+            //return "main";
+            //return "redirect:userList";
+            return "sys/sysIndex";
         }
         else
         {
             model.addAttribute("loginError", "login");
-            return "login";
+            return "sys/sysLogin";
         }
     }
 

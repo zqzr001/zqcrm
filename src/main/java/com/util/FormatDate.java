@@ -14,6 +14,39 @@ public class FormatDate
 {
 
     /**
+     * 根据格式:yyyy-mm-dd的字符串, 返回毫秒数
+     * 
+     * @return
+     */
+    public static long getLongByDate(String date)
+    {
+        
+        try
+        {
+            return new SimpleDateFormat("yyyy-mm-dd").parse(date).getTime();
+        }
+        catch (ParseException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    /**
+     * 根据格式:yyyy-mm-dd的字符串, 返回毫秒数
+     * 
+     * @return
+     */
+    public static String getDateByLong(long datetime)
+    {
+        
+        Date date = new Date();
+        date.setTime(datetime);
+        return new SimpleDateFormat("yyyy-mm-dd").format(date);
+    }
+    
+    /**
      * 得到当前系统日期,格式:yyyy-mm-dd
      * 
      * @return
@@ -202,6 +235,5 @@ public class FormatDate
 
     public static void main(String[] args)
     {
-        System.out.println(getTimeOf12() + "=AAA");
     }
 }

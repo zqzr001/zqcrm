@@ -120,7 +120,7 @@
 		</if>
 	</delete>
 	<insert id="insertSelective" parameterType="com.whatbi.zq.dal.domain.ZqUser">
-		<selectKey resultType="java.lang.Short" order="AFTER"
+		<selectKey resultType="java.lang.Long" order="AFTER"
 			keyProperty="id">
 			SELECT LAST_INSERT_ID() AS id
 		</selectKey>

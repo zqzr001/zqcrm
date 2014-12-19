@@ -35,13 +35,13 @@
     <example>${fnc:getSiteList()}</example>  
   </function>
   
-  <function>
+  <!-- <function>
     <description>获取主导航列表</description>
     <name>getMainNavList</name>
     <function-class>com.hzmux.hzcms.modules.cms.utils.CmsUtils</function-class>
     <function-signature>java.util.List getMainNavList(java.lang.String)</function-signature>
     <example>${fnc:getMainNavList(siteId)}</example>  
-  </function>
+  </function> -->
   
   <function>
     <description>获取栏目</description>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html style="overflow-x:hidden;overflow-y:auto;">
 	<head>
-		<title><sitemesh:title/> - Powered By hzcms</title>
+		<title>玖和财富</title>
 		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<sitemesh:head/>
 	</head>

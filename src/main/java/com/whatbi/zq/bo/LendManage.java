@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.whatbi.zq.dal.domain.ZqFirstLend;
 import com.whatbi.zq.dal.domain.ZqFirstLendExample;
 import com.whatbi.zq.dal.persistence.ZqFirstLendMapperExt;
@@ -12,6 +14,7 @@ import com.whatbi.zq.dal.persistence.ZqFirstLendMapperExt;
  * @author yinjie
  * @version 创建时间：2014年12月8日 下午11:18:37 类说明 : 理财经纪人管理投资客户订单
  */
+@Service
 public class LendManage
 {
     @Resource
@@ -29,7 +32,7 @@ public class LendManage
 
     public ZqFirstLend addLendOrder(ZqFirstLend zqFirstLend)
     {
-        zqFirstLend.setId((long) zqFirstLendMapperExt.insertSelective(zqFirstLend));
+        zqFirstLend.setId(Long.parseLong(String.valueOf(zqFirstLendMapperExt.insertSelective(zqFirstLend))));
         return zqFirstLend;
     }
 
