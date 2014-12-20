@@ -43,15 +43,15 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-
-		<table tableName="zq_customer" schema="zqcrm" />
+		<table tableName="zq_debt_transfer" schema="zqcrm" />
+		<!-- <table tableName="zq_customer" schema="zqcrm" />
 		<table tableName="zq_debt_transfer" schema="zqcrm" />
 		<table tableName="zq_first_debt" schema="zqcrm" />
 		<table tableName="zq_first_lend" schema="zqcrm" />
 		<table tableName="zq_product" schema="zqcrm" />
 		<table tableName="zq_report_debt_list" schema="zqcrm" />
 		<table tableName="zq_report_debt_transfer" schema="zqcrm" />
-		<table tableName="zq_user" schema="zqcrm" />
+		<table tableName="zq_user" schema="zqcrm" /> -->
 		
 		
 	</context>

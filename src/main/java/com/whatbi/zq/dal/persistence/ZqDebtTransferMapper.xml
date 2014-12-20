@@ -1,39 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.whatbi.zq.dal.persistence.ZqDebtTransferMapperExt" >
-  <resultMap id="BaseResultMap" type="com.whatbi.zq.dal.domain.ZqDebtTransfer" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
-    <result column="creator" property="creator" jdbcType="VARCHAR" />
-    <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
-    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
-    <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
-    <result column="pro_name" property="proName" jdbcType="BIGINT" />
-    <result column="pro_money" property="proMoney" jdbcType="BIGINT" />
-    <result column="pro_startdate" property="proStartdate" jdbcType="BIGINT" />
-    <result column="pro_enddate" property="proEnddate" jdbcType="BIGINT" />
-    <result column="pro_rate" property="proRate" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whatbi.zq.dal.persistence.ZqDebtTransferMapperExt">
+  <resultMap id="BaseResultMap" type="com.whatbi.zq.dal.domain.ZqDebtTransfer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="cust_lend_id" jdbcType="BIGINT" property="custLendId" />
+    <result column="cust_debt_id" jdbcType="BIGINT" property="custDebtId" />
+    <result column="pro_startdate" jdbcType="BIGINT" property="proStartdate" />
+    <result column="pro_enddate" jdbcType="BIGINT" property="proEnddate" />
+    <result column="pro_rate" jdbcType="VARCHAR" property="proRate" />
+    <result column="pro_money" jdbcType="DOUBLE" property="proMoney" />
+    <result column="remark" jdbcType="INTEGER" property="remark" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -44,25 +45,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -73,127 +74,133 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    id, is_deleted, creator, gmt_create, modifier, gmt_modified, pro_name, pro_money, 
-    pro_startdate, pro_enddate, pro_rate, remark
+  <sql id="Base_Column_List">
+    id, is_deleted, creator, gmt_create, modifier, gmt_modified, cust_lend_id, cust_debt_id, 
+    pro_startdate, pro_enddate, pro_rate, pro_money, remark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample" >
+  <select id="selectByExample" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from zq_debt_transfer
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
     <if test="oredCriteria.size != 0" />
     <if test="oredCriteria.size == 0" />
     <include refid="fullOrgPath" />
     <include refid="owner" />
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
     <include refid="MysqlDialectSuffix" />
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from zq_debt_transfer
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from zq_debt_transfer
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample" >
+  <delete id="deleteByExample" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample">
     delete from zq_debt_transfer
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insertSelective" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransfer" >
+  <insert id="insertSelective" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransfer">
     insert into zq_debt_transfer
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         is_deleted,
       </if>
-      <if test="creator != null" >
+      <if test="creator != null">
         creator,
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="modifier != null" >
+      <if test="modifier != null">
         modifier,
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified,
       </if>
-      <if test="proName != null" >
-        pro_name,
+      <if test="custLendId != null">
+        cust_lend_id,
       </if>
-      <if test="proMoney != null" >
-        pro_money,
+      <if test="custDebtId != null">
+        cust_debt_id,
       </if>
-      <if test="proStartdate != null" >
+      <if test="proStartdate != null">
         pro_startdate,
       </if>
-      <if test="proEnddate != null" >
+      <if test="proEnddate != null">
         pro_enddate,
       </if>
-      <if test="proRate != null" >
+      <if test="proRate != null">
         pro_rate,
       </if>
-      <if test="remark != null" >
+      <if test="proMoney != null">
+        pro_money,
+      </if>
+      <if test="remark != null">
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         #{isDeleted,jdbcType=CHAR},
       </if>
-      <if test="creator != null" >
+      <if test="creator != null">
         #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="modifier != null" >
+      <if test="modifier != null">
         #{modifier,jdbcType=VARCHAR},
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
       </if>
-      <if test="proName != null" >
-        #{proName,jdbcType=BIGINT},
+      <if test="custLendId != null">
+        #{custLendId,jdbcType=BIGINT},
       </if>
-      <if test="proMoney != null" >
-        #{proMoney,jdbcType=BIGINT},
+      <if test="custDebtId != null">
+        #{custDebtId,jdbcType=BIGINT},
       </if>
-      <if test="proStartdate != null" >
+      <if test="proStartdate != null">
         #{proStartdate,jdbcType=BIGINT},
       </if>
-      <if test="proEnddate != null" >
+      <if test="proEnddate != null">
         #{proEnddate,jdbcType=BIGINT},
       </if>
-      <if test="proRate != null" >
+      <if test="proRate != null">
         #{proRate,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="proMoney != null">
+        #{proMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
         #{remark,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransferExample" resultType="java.lang.Integer">
     select count(*) from zq_debt_transfer
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
     <if test="oredCriteria.size != 0" />
@@ -201,51 +208,54 @@
     <include refid="fullOrgPath" />
     <include refid="owner" />
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update zq_debt_transfer
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.isDeleted != null" >
+      <if test="record.isDeleted != null">
         is_deleted = #{record.isDeleted,jdbcType=CHAR},
       </if>
-      <if test="record.creator != null" >
+      <if test="record.creator != null">
         creator = #{record.creator,jdbcType=VARCHAR},
       </if>
-      <if test="record.gmtCreate != null" >
+      <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="record.modifier != null" >
+      <if test="record.modifier != null">
         modifier = #{record.modifier,jdbcType=VARCHAR},
       </if>
-      <if test="record.gmtModified != null" >
+      <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
-      <if test="record.proName != null" >
-        pro_name = #{record.proName,jdbcType=BIGINT},
+      <if test="record.custLendId != null">
+        cust_lend_id = #{record.custLendId,jdbcType=BIGINT},
       </if>
-      <if test="record.proMoney != null" >
-        pro_money = #{record.proMoney,jdbcType=BIGINT},
+      <if test="record.custDebtId != null">
+        cust_debt_id = #{record.custDebtId,jdbcType=BIGINT},
       </if>
-      <if test="record.proStartdate != null" >
+      <if test="record.proStartdate != null">
         pro_startdate = #{record.proStartdate,jdbcType=BIGINT},
       </if>
-      <if test="record.proEnddate != null" >
+      <if test="record.proEnddate != null">
         pro_enddate = #{record.proEnddate,jdbcType=BIGINT},
       </if>
-      <if test="record.proRate != null" >
+      <if test="record.proRate != null">
         pro_rate = #{record.proRate,jdbcType=VARCHAR},
       </if>
-      <if test="record.remark != null" >
+      <if test="record.proMoney != null">
+        pro_money = #{record.proMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remark != null">
         remark = #{record.remark,jdbcType=INTEGER},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update zq_debt_transfer
     set id = #{record.id,jdbcType=BIGINT},
       is_deleted = #{record.isDeleted,jdbcType=CHAR},
@@ -253,70 +263,74 @@
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       modifier = #{record.modifier,jdbcType=VARCHAR},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      pro_name = #{record.proName,jdbcType=BIGINT},
-      pro_money = #{record.proMoney,jdbcType=BIGINT},
+      cust_lend_id = #{record.custLendId,jdbcType=BIGINT},
+      cust_debt_id = #{record.custDebtId,jdbcType=BIGINT},
       pro_startdate = #{record.proStartdate,jdbcType=BIGINT},
       pro_enddate = #{record.proEnddate,jdbcType=BIGINT},
       pro_rate = #{record.proRate,jdbcType=VARCHAR},
+      pro_money = #{record.proMoney,jdbcType=DOUBLE},
       remark = #{record.remark,jdbcType=INTEGER}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransfer" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.whatbi.zq.dal.domain.ZqDebtTransfer">
     update zq_debt_transfer
-    <set >
-      <if test="isDeleted != null" >
+    <set>
+      <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=CHAR},
       </if>
-      <if test="creator != null" >
+      <if test="creator != null">
         creator = #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="modifier != null" >
+      <if test="modifier != null">
         modifier = #{modifier,jdbcType=VARCHAR},
       </if>
-      <if test="modifier == null" >
+      <if test="modifier == null">
         MODIFIER = 'system',
       </if>
-      <if test="gmtModified == null" >
+      <if test="gmtModified == null">
         GMT_MODIFIED = 0,
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
-      <if test="proName != null" >
-        pro_name = #{proName,jdbcType=BIGINT},
+      <if test="custLendId != null">
+        cust_lend_id = #{custLendId,jdbcType=BIGINT},
       </if>
-      <if test="proMoney != null" >
-        pro_money = #{proMoney,jdbcType=BIGINT},
+      <if test="custDebtId != null">
+        cust_debt_id = #{custDebtId,jdbcType=BIGINT},
       </if>
-      <if test="proStartdate != null" >
+      <if test="proStartdate != null">
         pro_startdate = #{proStartdate,jdbcType=BIGINT},
       </if>
-      <if test="proEnddate != null" >
+      <if test="proEnddate != null">
         pro_enddate = #{proEnddate,jdbcType=BIGINT},
       </if>
-      <if test="proRate != null" >
+      <if test="proRate != null">
         pro_rate = #{proRate,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="proMoney != null">
+        pro_money = #{proMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
         remark = #{remark,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <sql id="MysqlDialectSuffix" >
-    <if test="page != null" >
+  <sql id="MysqlDialectSuffix">
+    <if test="page != null">
       <![CDATA[ LIMIT #{page.begin},#{page.end} ]]>
     </if>
   </sql>
-  <sql id="fullOrgPath" >
+  <sql id="fullOrgPath">
     <if test="fullOrgPath != null" />
   </sql>
-  <sql id="owner" >
+  <sql id="owner">
     <if test="owner != null" />
   </sql>
 </mapper>
