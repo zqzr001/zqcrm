@@ -3,6 +3,8 @@
 <configuration>  
     <plugins> 
 	    <plugin interceptor="com.common.mybatis.interceptor.MybatisInterceptor"> 
-	    </plugin> 
+	    </plugin>
+	    <plugin interceptor="com.common.mybatis.interceptor.QuerybatisInterceptor"> 
+	    </plugin>
 	</plugins>  
 </configuration> 
